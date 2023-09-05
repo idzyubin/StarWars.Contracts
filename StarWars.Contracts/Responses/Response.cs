@@ -1,3 +1,3 @@
-﻿namespace StarWars.EpisodeService.Application.Responses;
+﻿namespace StarWars.Contracts.Responses;
 
 public record Response();

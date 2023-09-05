@@ -1,4 +1,4 @@
-﻿namespace StarWars.CompanyService.Application.Constants;
+﻿namespace StarWars.Contracts.Constants;
 
 /// <summary>
 ///     Константы используемые при валидации

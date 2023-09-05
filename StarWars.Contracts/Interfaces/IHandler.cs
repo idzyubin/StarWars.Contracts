@@ -1,9 +1,9 @@
 ﻿using FluentValidation.Results;
-using StarWars.EpisodeService.Application.Models;
-using StarWars.EpisodeService.Application.Requests;
-using StarWars.EpisodeService.Application.Responses;
+using StarWars.Contracts.Models;
+using StarWars.Contracts.Requests;
+using StarWars.Contracts.Responses;
 
-namespace StarWars.EpisodeService.Application.Interfaces;
+namespace StarWars.Contracts.Interfaces;
 
 /// <summary>
 ///     Интерфейс обработчика сообщения.
@@ -11,7 +11,7 @@ namespace StarWars.EpisodeService.Application.Interfaces;
 /// <typeparam name="TRequest">Данные запроса</typeparam>
 /// <typeparam name="TResponse">Данные ответа</typeparam>
 public interface IHandler<in TRequest, TResponse>
-    where TRequest : Request
+    where TRequest : Request<TResponse>
     where TResponse : Response
 {
     /// <summary>
@@ -20,5 +20,5 @@ public interface IHandler<in TRequest, TResponse>
     /// <param name="request"><see cref="Request"/></param>
     /// <param name="cancellationToken"><see cref="CancellationToken"/></param>
     /// <returns><see cref="Response"/></returns>
-    static abstract ValueTask<Result<Response, ValidationResult>> HandleAsync(TRequest request, CancellationToken cancellationToken);
+    ValueTask<Result<TResponse, ValidationResult>> HandleAsync(TRequest request, CancellationToken cancellationToken);
 }

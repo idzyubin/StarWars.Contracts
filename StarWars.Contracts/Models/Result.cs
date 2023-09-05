@@ -1,4 +1,4 @@
-﻿namespace StarWars.EpisodeService.Application.Models;
+﻿namespace StarWars.Contracts.Models;
 
 public readonly struct Result<TValue, TError>
 {
@@ -7,14 +7,14 @@ public readonly struct Result<TValue, TError>
 
     public Result(TValue value)
     {
-        IsError = true;
+        IsError = false;
         _value = value;
         _error = default;
     }
 
     public Result(TError error)
     {
-        IsError = false;
+        IsError = true;
         _error = error;
         _value = default;
     }

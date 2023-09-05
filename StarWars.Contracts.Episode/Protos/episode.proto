@@ -56,9 +56,14 @@ message GetEpisodeResponse {
 }
 
 message CreateEpisodeRequest {
-  int64 id = 1;
-  string name = 2;
-  string surname = 3;
+  string title = 2;
+  int32 runningTime = 3;
+  int64 directorId = 4;
+  int64 screenwriterId = 5;
+  int64 cinematographId = 6;
+  repeated int64 editorsIds = 7;
+  repeated int64 starringIds = 8;
+  int64 productionCompanyId = 9;
 }
 
 message CreateEpisodeResponse {
@@ -68,8 +73,14 @@ message CreateEpisodeResponse {
 
 message UpdateEpisodeRequest {
   int64 id = 1;
-  string name = 2;
-  string surname = 3;
+  string title = 2;
+  int32 runningTime = 3;
+  int64 directorId = 4;
+  int64 screenwriterId = 5;
+  int64 cinematographId = 6;
+  repeated int64 editorsIds = 7;
+  repeated int64 starringIds = 8;
+  int64 productionCompanyId = 9;
 }
 
 message UpdateEpisodeResponse {
@@ -101,10 +112,10 @@ message Episode {
   int32 runningTime = 3;
   Person director = 4;
   Person screenwriter = 5;
-  Person Cinematograph = 6;
-  Person Editors = 7;
-  Person Starring = 8;
-  Company ProductionCompany = 9;
+  Person cinematograph = 6;
+  repeated Person editors = 7;
+  repeated Person starring = 8;
+  Company productionCompany = 9;
 }
 
 message Person {

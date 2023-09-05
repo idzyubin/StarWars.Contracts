@@ -1,3 +1,6 @@
-﻿namespace StarWars.EpisodeService.Application.Requests;
+﻿using StarWars.Contracts.Interfaces;
+using StarWars.Contracts.Responses;
 
-public record Request();
+namespace StarWars.Contracts.Requests;
+
+public record Request<TResponse>() : IRequest<TResponse> where TResponse : Response;

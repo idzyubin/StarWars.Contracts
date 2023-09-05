@@ -1,21 +1,108 @@
 syntax = "proto3";
 
-option csharp_namespace = "GreeterServiceApp";
+option csharp_namespace = "PersonServiceGrpc";
 
-package greet;
+package person;
 
-// определение сервиса
-service Greeter {
-  // отправка сообщения
-  rpc SayHello (HelloRequest) returns (HelloReply);
+/**
+  Service for handling person operations.
+*/
+service PersonService {
+  /**
+    Get all persons by filter.
+  */
+  rpc GetPersons (GetPersonsRequest) returns (GetPersonsResponse);
+
+  /**
+  Get all persons by filter.
+  */
+  rpc GetPerson (GetPersonRequest) returns (GetPersonResponse);
+
+  /**
+    Get all persons by filter.
+  */
+  rpc CreatePerson (CreatePersonRequest) returns (CreatePersonResponse);
+
+  /**
+    Get all persons by filter.
+  */
+  rpc UpdatePerson (UpdatePersonRequest) returns (UpdatePersonResponse);
+
+  /**
+    Get all persons by filter.
+  */
+  rpc RestorePerson (RestorePersonRequest) returns (RestorePersonResponse);
+
+  /**
+    Get all persons by filter.
+  */
+  rpc DeletePerson (DeletePersonRequest) returns (DeletePersonResponse);
 }
 
-// сообщение от клиента содержит name
-message HelloRequest {
-  string name = 1;
+message GetPersonsRequest {}
+
+message GetPersonsResponse {
+  repeated Person Persons = 1;
+  Error error = 2;
 }
 
-// сообщение клиенту содержит message
-message HelloReply {
-  string message = 1;
+message GetPersonRequest {
+  int64 id = 1;
+}
+
+message GetPersonResponse {
+  Person person = 1;
+  Error error = 2;
+}
+
+message CreatePersonRequest {
+  int64 id = 1;
+  string name = 2;
+  string surname = 3;
+}
+
+message CreatePersonResponse {
+  Person person = 1;
+  Error error = 2;
+}
+
+message UpdatePersonRequest {
+  int64 id = 1;
+  string name = 2;
+  string surname = 3;
+}
+
+message UpdatePersonResponse {
+  Person person = 1;
+  Error error = 2;
+}
+
+message DeletePersonRequest {
+  int64 id = 1;
+}
+
+message DeletePersonResponse {
+  Person person = 1;
+  Error error = 2;
+}
+
+message RestorePersonRequest {
+  int64 id = 1;
+}
+
+message RestorePersonResponse {
+  Person person = 1;
+  Error error = 2;
+}
+
+message Person {
+  int64 id = 1;
+  string name = 2;
+  string surname = 3;
+}
+
+message Error {
+  string propertyName = 1;
+  string errorMessage = 2;
+  string errorCode = 3;
 }

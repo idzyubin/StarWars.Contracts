@@ -1,6 +1,7 @@
-﻿namespace StarWars.Contracts.Interfaces;
+﻿using StarWars.Contracts.Responses;
 
-public interface IRequest
+namespace StarWars.Contracts.Interfaces;
+
+public interface IRequest<TResponse> where TResponse : Response
 {
-    
 }

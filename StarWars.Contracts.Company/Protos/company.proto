@@ -1,0 +1,104 @@
+syntax = "proto3";
+
+option csharp_namespace = "CompanyServiceGrpc";
+
+package company;
+
+/**
+  Service for handling company operations.
+*/
+service CompanyService {
+  /**
+    Get all companies by filter.
+  */
+  rpc GetCompanies (GetCompaniesRequest) returns (GetCompaniesResponse);
+
+  /**
+    Get company.
+  */
+  rpc GetCompany (GetCompanyRequest) returns (GetCompanyResponse);
+
+  /**
+    Create a new company.
+  */
+  rpc CreateCompany (CreateCompanyRequest) returns (CreateCompanyResponse);
+
+  /**
+    Update an existing company.
+  */
+  rpc UpdateCompany (UpdateCompanyRequest) returns (UpdateCompanyResponse);
+
+  /**
+    Delete company.
+  */
+  rpc RestoreCompany (RestoreCompanyRequest) returns (RestoreCompanyResponse);
+
+  /**
+    Restore company.
+  */
+  rpc DeleteCompany (DeleteCompanyRequest) returns (DeleteCompanyResponse);
+}
+
+message GetCompaniesRequest {}
+
+message GetCompaniesResponse {
+  repeated Company Companies = 1;
+  optional Error Error = 2;
+}
+
+message GetCompanyRequest {
+  int64 id = 1;
+}
+
+message GetCompanyResponse {
+  optional Company Company = 1;
+  optional Error Error = 2;
+}
+
+message CreateCompanyRequest {
+  string title = 2;
+}
+
+message CreateCompanyResponse {
+  optional Company Company = 1;
+  optional Error Error = 2;
+}
+
+message UpdateCompanyRequest {
+  int64 id = 1;
+  string title = 2;
+}
+
+message UpdateCompanyResponse {
+  optional Company Company = 1;
+  optional Error Error = 2;
+}
+
+message DeleteCompanyRequest {
+  int64 id = 1;
+}
+
+message DeleteCompanyResponse {
+  optional Company Company = 1;
+  optional Error Error = 2;
+}
+
+message RestoreCompanyRequest {
+  int64 id = 1;
+}
+
+message RestoreCompanyResponse {
+  optional Company Company = 1;
+  optional Error Error = 2;
+}
+
+message Company {
+  int64 id = 1;
+  string title = 2;
+}
+
+message Error {
+  string propertyName = 1;
+  string errorMessage = 2;
+  string errorCode = 3;
+}
