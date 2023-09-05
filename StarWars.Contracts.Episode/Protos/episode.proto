@@ -1,0 +1,125 @@
+syntax = "proto3";
+
+option csharp_namespace = "EpisodeServiceGrpc";
+
+package episode;
+
+/**
+  Service for handling episode operations.
+*/
+service EpisodeService {
+  /**
+    Get all episodes by filter.
+  */
+  rpc GetEpisodes (GetEpisodesRequest) returns (GetEpisodesResponse);
+
+  /**
+  Get all episodes by filter.
+  */
+  rpc GetEpisode (GetEpisodeRequest) returns (GetEpisodeResponse);
+
+  /**
+    Get all episodes by filter.
+  */
+  rpc CreateEpisode (CreateEpisodeRequest) returns (CreateEpisodeResponse);
+
+  /**
+    Get all episodes by filter.
+  */
+  rpc UpdateEpisode (UpdateEpisodeRequest) returns (UpdateEpisodeResponse);
+
+  /**
+    Get all episodes by filter.
+  */
+  rpc RestoreEpisode (RestoreEpisodeRequest) returns (RestoreEpisodeResponse);
+
+  /**
+    Get all episodes by filter.
+  */
+  rpc DeleteEpisode (DeleteEpisodeRequest) returns (DeleteEpisodeResponse);
+}
+
+message GetEpisodesRequest {}
+
+message GetEpisodesResponse {
+  repeated Episode Episodes = 1;
+  Error error = 2;
+}
+
+message GetEpisodeRequest {
+  int64 id = 1;
+}
+
+message GetEpisodeResponse {
+  Episode episode = 1;
+  Error error = 2;
+}
+
+message CreateEpisodeRequest {
+  int64 id = 1;
+  string name = 2;
+  string surname = 3;
+}
+
+message CreateEpisodeResponse {
+  Episode episode = 1;
+  Error error = 2;
+}
+
+message UpdateEpisodeRequest {
+  int64 id = 1;
+  string name = 2;
+  string surname = 3;
+}
+
+message UpdateEpisodeResponse {
+  Episode episode = 1;
+  Error error = 2;
+}
+
+message DeleteEpisodeRequest {
+  int64 id = 1;
+}
+
+message DeleteEpisodeResponse {
+  Episode episode = 1;
+  Error error = 2;
+}
+
+message RestoreEpisodeRequest {
+  int64 id = 1;
+}
+
+message RestoreEpisodeResponse {
+  Episode episode = 1;
+  Error error = 2;
+}
+
+message Episode {
+  int64 id = 1;
+  string title = 2;
+  int32 runningTime = 3;
+  Person director = 4;
+  Person screenwriter = 5;
+  Person Cinematograph = 6;
+  Person Editors = 7;
+  Person Starring = 8;
+  Company ProductionCompany = 9;
+}
+
+message Person {
+  int64 id = 1;
+  string name = 2;
+  string surname = 3;
+}
+
+message Company {
+  int64 id = 1;
+  string title = 2;
+}
+
+message Error {
+  string propertyName = 1;
+  string errorMessage = 2;
+  string errorCode = 3;
+}
